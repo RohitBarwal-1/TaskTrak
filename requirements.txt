@@ -1,1 +1,4 @@
+fastapi
+logging
+motor
 pydantic
