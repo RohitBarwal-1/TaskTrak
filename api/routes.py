@@ -1,6 +1,6 @@
-from fastapi import FastAPI
-from auth_routes import router as auth_routes
+# from fastapi import FastAPI
+# from auth_routes import router as auth_routes
 
-app = FastAPI()
+# app = FastAPI()
 
-app.include_router(auth_routes)
+# app.include_router(auth_routes)

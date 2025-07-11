@@ -1,4 +1,6 @@
 fastapi
+uvicorn
 logging
 motor
 pydantic
+bcrypt
