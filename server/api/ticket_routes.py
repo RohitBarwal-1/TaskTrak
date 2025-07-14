@@ -18,10 +18,10 @@ async def get_tickets(request: Request):
 @router.post("/")
 async def create_ticket(request:Request, tickets:tickets):
     data = await request.json()
-    user_id = data.user_id
-    logger.info("Creating ticket for user %s",user_id)
-    result = await create_ticket_controller(data,request.app.database,user_id)
-    return JSONResponse(content={result})
+    # user_id = data.user_id
+    logger.info("Creating ticket for user %s",data)
+    result = await create_ticket_controller(data,request.app.database,data)
+    return JSONResponse(content={"result":result})
 
 @router.patch("/")
 async def update_ticket(request:Request, tickets:tickets):

@@ -9,6 +9,7 @@
         "request": "launch",
         "module": "uvicorn",
         "args": ["api.__init__:app", "--reload"],
+        "cwd": "${workspaceFolder}/server",
         "jinja": true,
         "console": "integratedTerminal",
     }
