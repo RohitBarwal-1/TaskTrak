@@ -6,9 +6,10 @@ async def get_tickets_controller(data,database,user_id):
     logger.info("Entering to save ticket for the user %s",user_id)
     await get_ticket_service(database,data)
 
-async def create_ticket_controller(data,database,user_id):
-    logger.info("Entering to save ticket for the user %s",user_id)
-    await create_ticket_service(database,data)
+async def create_ticket_controller(ticket,database, data, db):
+    # logger.info("Entering to save ticket for the user %s",user_id)
+    logger.info("Entering to save ticket for the user")
+    await create_ticket_service(ticket, database, data, db)
     
 async def update_tickets_controller(data,database,user_id):
     logger.info("Entering to save ticket for the user %s",user_id)

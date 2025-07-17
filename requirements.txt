@@ -1,6 +1,7 @@
+bcrypt
 fastapi
-uvicorn
 logging
 motor
 pydantic
-bcrypt
+pymongo
+uvicorn
