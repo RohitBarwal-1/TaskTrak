@@ -2,9 +2,10 @@ import logging
 from service.ticket_service import (get_ticket_service,create_ticket_service,update_ticket_service,delete_ticket_service)
 logger = logging.getLogger(__name__)
 
-async def get_tickets_controller(data,database,user_id):
-    logger.info("Entering to save ticket for the user %s",user_id)
-    await get_ticket_service(database,data)
+async def get_tickets_controller(data,tickets_repo):
+    # logger.info("Entering to save ticket for the user %s",user_id)
+    logger.info("Entering to save ticket for the user")
+    await get_ticket_service(data,tickets_repo)
 
 async def create_ticket_controller(ticket,database, data, db):
     # logger.info("Entering to save ticket for the user %s",user_id)

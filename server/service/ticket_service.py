@@ -3,12 +3,16 @@ from db_service.tickets_db_services import TicketDbService
 
 logger = logging.getLogger(__name__)
 
-async def get_ticket_service(database,data):
-    pass
+async def get_ticket_service(data,tickets_repo):
+    try:
+        tickets_repo.find_all(data)
+    except Exception as e:
+        raise e
 
 async def create_ticket_service(ticket, database, data, db):
     try:
-        db.insert(database=database, data=ticket)
+        # db.insert(database=database, data=ticket)
+        db.insert(ticket)
         return True
     except Exception as e:
         raise e

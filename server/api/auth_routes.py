@@ -1,17 +1,19 @@
 import logging
 import uuid
 import bcrypt
-from fastapi import APIRouter, Request
+from controller.auth_controller import signup_controller
+from db_service.auth_db_services import get_user_collection
+from fastapi import APIRouter, Request, Depends
 from models.users_model import Users
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 logger = logging.getLogger(__name__)
 
 @router.post("/signup")
-async def signup(request: Request, user:Users):
+async def signup(request: Request, body: Users = Depends(get_user_collection) ):
     data = await request.json()
     logger.info("received request %s", data)
-    return True
+    return await signup_controller(body=body)
 
 @router.post("/login")
 async def login(request:Request, user):

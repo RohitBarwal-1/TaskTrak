@@ -3,3 +3,4 @@ class TTConstants:
     Database = "tickettrak"
 
     TICKETS = "tickets"
+    USERS = "users"

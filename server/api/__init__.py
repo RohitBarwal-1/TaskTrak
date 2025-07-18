@@ -1,3 +1,4 @@
+import logging
 from .auth_routes import router as auth_routes #when main / start point file is in same directory then need to add . at start
 from .ticket_routes import router as ticket_routes
 from contextlib import asynccontextmanager
@@ -15,6 +16,12 @@ app = FastAPI()
 async def lifespan(app: FastAPI):
     app.mongodb_client = AsyncIOMotorClient(TTConstants.MONGO_URI)
     app.database = app.mongodb_client[TTConstants.Database]
+    logging.basicConfig( level=logging.INFO,
+                         format="[{levelname}] [{asctime}] {message}", 
+                         style='{', 
+                         datefmt="%Y-%m-%d %H:%M:%S" 
+                        )
+    logger = logging.getLogger(__name__)
     yield
     app.mongodb_client.close()
     

@@ -9,11 +9,12 @@ router = APIRouter(prefix="/ticket", tags=["ticket"])
 logger = logging.getLogger(__name__)
 
 @router.get("/")
-async def get_tickets(request: Request):
+async def get_tickets(request: Request, tickets_repo = Depends(get_ticket_collection)):
     data = request.json()
-    user_id = data.user_id
-    logger.info("Received request to get all tickets for user %s",user_id)
-    result = await get_tickets_controller(data,request.app.database,user_id)
+    # user_id = data.user_id
+    # logger.info("Received request to get all tickets for user %s",user_id)
+    logger.info("Received request to get all tickets for user %s", data)
+    result = await get_tickets_controller(data, tickets_repo)
     return result
     
 @router.post("/")

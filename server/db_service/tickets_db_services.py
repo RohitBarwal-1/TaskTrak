@@ -14,12 +14,15 @@ class TicketDbService(): #need to create a baserepo class and inhert it here
         self.collection = collection
     
 
-    def insert(self, database, data):
-        try:
-            result = database[TTConstants.TICKETS].insert_one(data.dict())
-        except Exception as e:
-            raise e
-        return result
+    # def insert(self, database, data):
+    #     try:
+    #         result = database[TTConstants.TICKETS].insert_one(data.dict())
+    #     except Exception as e:
+    #         raise e
+    #     return result
     
-    # def insert(self, Obj):
-    #     return self.collection.insert_one(Obj.dict())
+    def insert(self, Obj):
+        return self.collection.insert_one(Obj.dict())
+    
+    def find_all(self, obj):
+        return self.collection.find(obj)
