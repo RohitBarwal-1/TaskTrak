@@ -3,12 +3,15 @@ from .auth_routes import router as auth_routes #when main / start point file is 
 from .ticket_routes import router as ticket_routes
 from contextlib import asynccontextmanager
 from database.constants import TTConstants
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from middlewares.auth_middleware import JWTAuthMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 
 
 app = FastAPI()
+load_dotenv()
 
 # Event handler for application startup
 # @app.on_event("startup")
@@ -36,7 +39,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.add_middleware(JWTAuthMiddleware)
 # @app.on_event("shutdown")
 # async def shutdown_db_client():
 #     app.mongodb_client.close()

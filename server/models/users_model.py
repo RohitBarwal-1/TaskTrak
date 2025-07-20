@@ -8,3 +8,7 @@ class Users(BaseModel):
     email: str
     is_active: bool
     password: str
+
+class UserLogin(BaseModel):
+    email: str
+    password: str

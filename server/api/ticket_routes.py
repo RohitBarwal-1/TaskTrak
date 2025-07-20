@@ -1,4 +1,5 @@
 import logging
+import os
 from controller.ticket_controller import create_ticket_controller,get_tickets_controller,update_tickets_controller,delete_tickets_controller
 from fastapi import APIRouter, Request, Depends
 from fastapi.responses import JSONResponse
@@ -8,13 +9,16 @@ from db_service.tickets_db_services import get_ticket_collection
 router = APIRouter(prefix="/ticket", tags=["ticket"])
 logger = logging.getLogger(__name__)
 
+SECRET_KEY = os.getenv("JWT_SECRET", "super-secret-key")
+ALGORITHM = "HS256"
+
 @router.get("/")
 async def get_tickets(request: Request, tickets_repo = Depends(get_ticket_collection)):
-    data = request.json()
+    user_id = request.state.user["user_id"] 
     # user_id = data.user_id
     # logger.info("Received request to get all tickets for user %s",user_id)
-    logger.info("Received request to get all tickets for user %s", data)
-    result = await get_tickets_controller(data, tickets_repo)
+    logger.info("Received request to get all tickets for user_id %s", user_id)
+    result = await get_tickets_controller(user_id, tickets_repo)
     return result
     
 @router.post("/")

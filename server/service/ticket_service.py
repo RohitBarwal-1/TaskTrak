@@ -3,9 +3,10 @@ from db_service.tickets_db_services import TicketDbService
 
 logger = logging.getLogger(__name__)
 
-async def get_ticket_service(data,tickets_repo):
+async def get_ticket_service(user_id,tickets_repo):
     try:
-        tickets_repo.find_all(data)
+        tickets = tickets_repo.find_all({"user_id":user_id})
+        return {"Tickets": tickets}
     except Exception as e:
         raise e
 

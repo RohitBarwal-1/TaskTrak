@@ -1,7 +1,9 @@
 bcrypt
+dotenv
 fastapi
 logging
 motor
 pydantic
+pyjwt
 pymongo
 uvicorn
