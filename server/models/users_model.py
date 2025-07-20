@@ -1,7 +1,8 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class Users(BaseModel):
-    user_id: str
+    user_id: Optional[str]
     first_name: str
     last_name: str
     email: str

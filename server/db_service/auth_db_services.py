@@ -13,5 +13,5 @@ class AuthDbService():
     def __init__(self, collection: Collection):
         self.collection = collection
 
-    def insert(self, obj):
+    async def insert(self, obj):
         return self.collection.insert_one(obj.dict())
